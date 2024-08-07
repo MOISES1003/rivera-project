@@ -1,11 +1,8 @@
-import { HashRouter, Route, Routes } from "react-router-dom";
+import { Provider } from "react-redux";
+import { store } from "../store";
 
-export function MyRouters() {
-  return (
-    <HashRouter>
-      <Routes>
-        <Route />
-      </Routes>
-    </HashRouter>
-  );
-}
+const StoreProvider = ({ children }) => (
+  <Provider store={store}>{children}</Provider>
+);
+
+export default StoreProvider;
