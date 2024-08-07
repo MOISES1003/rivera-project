@@ -3,7 +3,7 @@ import { fetchLenses } from "../services/lensService";
 
 export function useFetchLenses() {
   const dispatch = useDispatch();
-  const lenses = useSelector((state) => state.lens.lenses);
+  const lenses = useSelector((state) => state.lens.lenses || []);
   const loading = useSelector((state) => state.lens.loading);
   const error = useSelector((state) => state.lens.error);
 

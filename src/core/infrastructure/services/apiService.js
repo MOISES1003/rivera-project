@@ -4,6 +4,7 @@ import apiClient from '../clients/apiClient';
 export async function GET(url, pageEstatic) {
     try {
         const response = await apiClient.get(pageEstatic ? pageEstatic : url);
+        console.log(response);
         return {
             data: response.data.data,
             links: {

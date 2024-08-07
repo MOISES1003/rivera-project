@@ -1,11 +1,14 @@
-class CreateLens{
-constructor(lensRepository){
-this.lensRepository = lensRepository;
-}
+import CreateLentsDto from "../../dto/createLentsDto";
 
-async execute(lens){
-return await this.lensRepository.create(lens);
+class CreateLens {
+  constructor(lensRepository) {
+    this.lensRepository = lensRepository;
+  }
+
+  async execute(lens) {
+    const lenstDto = new CreateLentsDto(lens);
+    return await this.lensRepository.create(lenstDto);
+  }
 }
-};
 
 export default CreateLens;

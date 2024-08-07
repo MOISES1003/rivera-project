@@ -1,5 +1,7 @@
+import { LensList } from "../features/lents/components/LensList";
+
 export function LentsPage(){
     return(
-        <h1>lentes</h1>
+        <LensList/>
     )
 }

@@ -12,7 +12,7 @@ class LensRepository extends ILensRepository {
     return response.data;
   }
   async getAll() {
-    const response = await GET("/lenses");
+    const response = await GET("/lentes/ShowAllLente/20");
     return response.data;
   }
   async getByLens(id) {
