@@ -2,7 +2,7 @@ class ILensRepository {
   create(lents) {
     throw new Error("Metodo no Implementado");
   }
-  getAll() {
+  getAll(paginaEstatica) {
     throw new Error("Metodo no Implementado");
   }
   getByLens(id) {

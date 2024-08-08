@@ -2,6 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   lenses: [],
+  links: [],
+  pageStatic: "",
   loading: false,
   error: null,
 };
@@ -16,7 +18,9 @@ const lensSlice = createSlice({
     },
     fetchLensesSuccess: (state, action) => {
       state.loading = false;
-      state.lenses = action.payload;
+      state.lenses = action.payload.data;
+      state.links = action.payload.links;
+      state.pageStatic = action.payload.pageStatic;
     },
     fetchLensesFailure: (state, action) => {
       state.loading = false;
@@ -29,7 +33,6 @@ const lensSlice = createSlice({
     createLensSuccess: (state, action) => {
       state.loading = false;
       state.lenses.push(action.payload);
-      console.log(state.lenses);
     },
     createLensFailure: (state, action) => {
       state.loading = false;

@@ -12,8 +12,7 @@ const createLensesUseCase = new CreateLens(lensRepository);
 export const createLens = (lens) => async(dispatch) => {
     dispatch(createLensStart());
     try {
-        const newLens = await createLensesUseCase.execute(lens);
-        console.log(newLens);
+        await createLensesUseCase.execute(lens);
         dispatch(createLensSuccess(lens));
     } catch (error) {
         dispatch(createLensFailure(error.toString()));

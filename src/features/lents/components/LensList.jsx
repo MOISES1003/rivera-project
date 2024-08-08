@@ -3,7 +3,7 @@ import { useCreateLens } from "../hooks/useCreateLens";
 import { useFetchLenses } from "../hooks/useFetchLenses";
 
 export function LensList() {
-  const { lenses, loading, error, loadLenses } = useFetchLenses();
+  const { lenses, links, loading, error, loadLenses } = useFetchLenses();
   const { createLoading, createError, addLens } = useCreateLens();
   const [reload, setReload] = useState(false);
   const [newLens, setNewLens] = useState({
@@ -19,13 +19,11 @@ export function LensList() {
 
   const handleAddLens = () => {
     addLens(newLens);
-
-    if (response.success) {
-      setReload(!reload);
-    }
     setNewLens({ codigo: "", nombre: "", serie: "", stock: "", marca: "" });
   };
-
+  const btnLinks = () => {
+    console.log(links);
+  };
   return (
     <div>
       {loading && <p>Loading...</p>}
@@ -71,6 +69,9 @@ export function LensList() {
         />
         <button onClick={handleAddLens} disabled={createLoading}>
           {createLoading ? "Creating..." : "Add Lens"}
+        </button>
+        <button onClick={btnLinks}>
+          btn links
         </button>
         {createError && <p>Error: {createError}</p>}
       </div>
