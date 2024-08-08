@@ -29,6 +29,7 @@ const lensSlice = createSlice({
     createLensSuccess: (state, action) => {
       state.loading = false;
       state.lenses.push(action.payload);
+      console.log(state.lenses);
     },
     createLensFailure: (state, action) => {
       state.loading = false;

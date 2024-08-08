@@ -7,13 +7,14 @@ import {
 } from "../store/lensSlice";
 
 const lensRepository = new LensRepository();
-const getLensesUseCase = new CreateLens(lensRepository);
+const createLensesUseCase = new CreateLens(lensRepository);
 //crear un nuevo lente
 export const createLens = (lens) => async(dispatch) => {
     dispatch(createLensStart());
     try {
-        const newLens = await getLensesUseCase.execute(lens);
-        dispatch(createLensSuccess(newLens));
+        const newLens = await createLensesUseCase.execute(lens);
+        console.log(newLens);
+        dispatch(createLensSuccess(lens));
     } catch (error) {
         dispatch(createLensFailure(error.toString()));
     }

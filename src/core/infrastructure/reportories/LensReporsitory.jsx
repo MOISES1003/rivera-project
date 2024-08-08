@@ -10,12 +10,14 @@ class LensRepository extends ILensRepository {
   }
 
   async create(lens) {
-    const response = await POST("/CreateLente", lens);
+    const response = await POST("/lentes/CreateLente", lens);
     return response.data;
   }
+  //
   async getAll() {
     try {
       const response = await GET("/lentes/ShowAllLente/20");
+      // console.log(response.data);
       const lensesData = response.data;
 
       // Asegúrate de que lensesData tenga el formato esperado
@@ -32,10 +34,14 @@ class LensRepository extends ILensRepository {
       throw error;
     }
   }
+
+//obtener por lente por su id 
   async getByLens(id) {
     const response = await GET(`/lenses/${id}`);
     return response.data;
   }
+
+//editar el lente
   async update(lens) {
     const response = await PUT(`/lens/${lens.id}`, lens);
     return response.data;

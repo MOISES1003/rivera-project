@@ -5,6 +5,7 @@ import { useFetchLenses } from "../hooks/useFetchLenses";
 export function LensList() {
   const { lenses, loading, error, loadLenses } = useFetchLenses();
   const { createLoading, createError, addLens } = useCreateLens();
+  const [reload, setReload] = useState(false);
   const [newLens, setNewLens] = useState({
     codigo: "",
     nombre: "",
@@ -18,6 +19,10 @@ export function LensList() {
 
   const handleAddLens = () => {
     addLens(newLens);
+
+    if (response.success) {
+      setReload(!reload);
+    }
     setNewLens({ codigo: "", nombre: "", serie: "", stock: "", marca: "" });
   };
 

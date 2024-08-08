@@ -10,7 +10,7 @@ class CreateLens {
     const lensEntity = new LentsEntitie(lens);
 
     if(!lensEntity.isInstock()){
-      throw new Error("el lente no puede ser de stock 0")
+      throw new Error("el stock del lente no puede ser 0")
     }
 
     const lenstDto = new CreateLentsDto(lensEntity);
