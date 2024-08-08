@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import { fetchLenses } from "../services/lensService";
+import { fetchLenses } from "../services/fetchLensService";
+
 
 export function useFetchLenses() {
   const dispatch = useDispatch();

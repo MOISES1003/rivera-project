@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import { createLens } from "../services/lensService";
+import { createLens } from "../services/createLensService";
+
 
 export function useCreateLens() {
   const dispatch = useDispatch();
