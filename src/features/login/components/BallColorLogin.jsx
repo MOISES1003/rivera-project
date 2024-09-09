@@ -1,7 +1,10 @@
 import styled, { css, keyframes } from "styled-components";
+import { WaveDiv } from "./WaveDiv";
 
 export function BallColorLogin({ active }) {
-  return <Ball active={active}>componente</Ball>;
+  return <Ball active={active}>
+    <WaveDiv/>
+  </Ball>;
 }
 // Animación para expandir y contraer el círculo
 const expandAndContract = keyframes`
@@ -49,6 +52,7 @@ const Ball = styled.div`
   background: linear-gradient(to bottom, #1704e9, #210777);
   position: absolute;
   transition: all 0.5s ease;
+  overflow: hidden;
   animation: ${(props) =>
     props.active
       ? css`
