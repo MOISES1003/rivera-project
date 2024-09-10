@@ -10,7 +10,7 @@ export function FormLogin({event}) {
         <h1>OptiCore</h1>
       </Title>
       <Formulario onSubmit={handleSubmitForm}>
-        <h2>Sing in</h2>
+        <h2>login</h2>
         <ContentInputs>
           <InputText placeholder="Ruc:" height="35px" width="300px" />
           <InputText placeholder="Correo:" height="35px" width="300px" />

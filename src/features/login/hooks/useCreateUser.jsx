@@ -3,8 +3,8 @@ import { createUser } from "../services/createUserService";
 
 export function useCreateUser() {
   const dispatch = useDispatch();
-  const createLoading = useSelector((state) => state.user.createLoading);
-  const createError = useSelector((state) => state.user.createError);
+  const createLoading = useSelector((state) => state.user.loading);
+  const createError = useSelector((state) => state.user.error);
   const addUser = (user) => {
     dispatch(createUser(user));
   };

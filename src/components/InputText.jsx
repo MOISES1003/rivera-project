@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export function InputText({ placeholder, type = "text", width, height , event}) {
+export function InputText({ placeholder, type = "text", width, height,value , event}) {
   return (
     <ContenInput>
       <Input
@@ -9,6 +9,7 @@ export function InputText({ placeholder, type = "text", width, height , event}) 
         width={width}
         height={height}
         onChange={event}
+        value={value}
       />
     </ContenInput>
   );

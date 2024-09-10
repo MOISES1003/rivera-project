@@ -37,6 +37,7 @@ export async function SEARCH(url, termino) {
 export async function POST(url, data) {
     try {
         const response = await apiClient.post(url, data);
+        console.log(response);
         return response.data;
     } catch (error) {
         console.error("Error en POST:", error);
