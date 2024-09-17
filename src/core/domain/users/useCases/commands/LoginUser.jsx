@@ -2,7 +2,7 @@
 import UserDto from "../../dto/userDto";
 import UserEntitie from "../../entities/userEntitie";
 
-class CreateUser {
+class LoginUser {
   constructor(userRepository) {
     this.userRepository = userRepository;
   }
@@ -12,11 +12,11 @@ class CreateUser {
     const userEntity = new UserEntitie(user);
     if (userEntity.camposVacios()) {
       const userDto = new UserDto(userEntity);
-      return await this.userRepository.create(userDto);
+      return await this.userRepository.login(userDto);
     } else {
       throw new Error("hay campos vacios");
     }
   }
 }
 
-export default CreateUser;
+export default LoginUser;

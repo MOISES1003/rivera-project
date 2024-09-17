@@ -25,9 +25,14 @@ const initialState = {
         state.loading = true;
         state.error = null;
       },
+      //crea un solo usuario y no lo agrega al estado 
+      createUserOne: (state) => {
+        state.loading = false;
+      },
+      //aqui si puedo crear usuarios y agregarlo al estado user[]
       createUserSuccess: (state, action) => {
         state.loading = false;
-        state.lenses.push(action.payload);
+        state.user.push(action.payload);
       },
       createUserFailure: (state, action) => {
         state.loading = false;
@@ -40,6 +45,7 @@ const initialState = {
     fetchUserSuccess,
     fetchUserFailure,
     createUserStart,
+    createUserOne,
     createUserSuccess,
     createUserFailure,
   } = userSlice.actions;

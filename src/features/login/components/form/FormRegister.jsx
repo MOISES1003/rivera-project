@@ -4,17 +4,21 @@ import { Button } from "../../../../components/Button";
 import { handleSubmitForm } from "../../../../core/utils/handleSubmitForm";
 import { useState } from "react";
 import { useCreateUser } from "../../hooks/useCreateUser";
+import { ButtonIcons } from "../ButtonIcons";
+import aiconFacebook from "../../../../assets/images/facebook.png"
+import aiconGoogle from "../../../../assets/images/search.png"
+import aiconTwitter from "../../../../assets/images/twitter.png"
 export function FormRegister({ event }) {
   const { createLoading, createError, addUser } = useCreateUser();
   const [newUser, setNewUser] = useState({
     ruc: "",
-    email: "",
+    usuario: "",
     password: "",
   });
   const handleAddLens = () => {
     console.log("ejecutar");
     addUser(newUser);
-    setNewUser({ ruc: "", email: "", password: "" });
+    setNewUser({ ruc: "", usuario: "", password: "" });
   };
   return (
     <Content>
@@ -32,11 +36,11 @@ export function FormRegister({ event }) {
             event={(e) => setNewUser({ ...newUser, ruc: e.target.value })}
           />
           <InputText
-            placeholder="Correo:"
+            placeholder="Usuario:"
             height="35px"
             width="300px"
-            value={newUser.email}
-            event={(e) => setNewUser({ ...newUser, email: e.target.value })}
+            value={newUser.usuario}
+            event={(e) => setNewUser({ ...newUser, usuario: e.target.value })}
           />
           <InputText
             placeholder="Password:"
@@ -47,9 +51,9 @@ export function FormRegister({ event }) {
             event={(e) => setNewUser({ ...newUser, password: e.target.value })}
           />
           <div className="contenRecoverPassword">
-            <a href="" className="recoverPassword">
+            <button href="" className="recoverPassword" onClick={event}>
               are you registered?
-            </a>
+            </button>
           </div>
         </ContentInputs>
         {createLoading ? (
@@ -73,8 +77,13 @@ export function FormRegister({ event }) {
         )}
 
         <h1>{createError}</h1>
+        <h1>Comprar</h1>
+        {/* <ContentButtons>
+        <ButtonIcons Icon={aiconFacebook}/>
+        <ButtonIcons Icon={aiconGoogle}/>
+        <ButtonIcons Icon={aiconTwitter}/>
+      </ContentButtons> */}
       </Formulario>
-      <contentButtons></contentButtons>
     </Content>
   );
 }
@@ -116,7 +125,20 @@ const ContentInputs = styled.div`
     .recoverPassword {
       color: #6262e4;
       right: 0;
+      border:none;
+      background-color: transparent;
+      cursor: pointer;
+      font-size: 15px;
+      transition: all 0.5s ease-in-out;
+      &:hover{
+        color: #676752;
+      }
     }
   }
 `;
-const contentButtons = styled.div``;
+const ContentButtons = styled.div`
+width: 200px;
+display:flex;
+margin-top:10px;
+justify-content: space-around;
+`;

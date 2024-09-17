@@ -1,8 +1,9 @@
 import styled, { css, keyframes } from "styled-components";
 import { WaveDiv } from "./WaveDiv";
-
+import img1 from "../../../assets/images/img1.png"
 export function BallColorLogin({ active }) {
   return <Ball active={active}>
+    <IMG src={img1} alt="" />
     <WaveDiv/>
   </Ball>;
 }
@@ -61,4 +62,10 @@ const Ball = styled.div`
       : css`
           ${expandAndContract} 1s ease forwards
         `};
+`;
+const IMG = styled.img`
+position: absolute;
+/* width: 400px; */
+left:-20px;
+bottom: 0px;
 `;
