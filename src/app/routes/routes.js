@@ -1,7 +1,20 @@
+import { HomePage } from "../../pages/HomePage";
+import { LentsPage } from "../../pages/LentsPages";
+import { LoginPage } from "../../pages/LoginPage";
+
 const ROUTES = {
-    HOME: '/',
-    LOGIN: '/login',
-    LENTES: '/lents',
+    HOME: {
+        PATH: "/",
+        COMPONENT: HomePage,
+    },
+    LOGIN: {
+        PATH: "/",
+        COMPONENT: LoginPage,
+    },
+    LENTES: {
+        PATH: "/lents",
+        COMPONENT: LentsPage
+    },
     // Agrega más rutas según sea necesario
 };
 

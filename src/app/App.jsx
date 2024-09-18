@@ -4,10 +4,9 @@ import viteLogo from "/vite.svg";
 import { MyRouters } from "./routes/router";
 import StoreProvider from "./providers/storeProvider";
 import { GlobalStyles } from "../assets/styles/GlobalStyle";
+import { GetCookie } from "../core/infrastructure/services/CookieService";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <StoreProvider>
       <GlobalStyles/>
