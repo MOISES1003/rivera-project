@@ -4,7 +4,7 @@ import { Button } from "../../../../components/Button";
 import { handleSubmitForm } from "../../../../core/utils/handleSubmitForm";
 import { useState } from "react";
 import { useLoginUser } from "../../hooks/useLoginUser";
-
+import Logo from "../../../../assets/images/logo.png";
 export function FormLogin({ event }) {
   const { loginLoading, loginError, acessUser } = useLoginUser();
   const [logUser, setLogUser] = useState({
@@ -20,7 +20,7 @@ export function FormLogin({ event }) {
   return (
     <Content>
       <Title>
-        <h1>OptiCore</h1>
+        <Img srcSet={Logo} alt="OptiCore" />
       </Title>
       <Formulario onSubmit={handleSubmitForm}>
         <h2>login</h2>
@@ -75,29 +75,29 @@ export function FormLogin({ event }) {
           event={event}
         />
       </Formulario>
-      <contentButtons></contentButtons>
     </Content>
   );
 }
 
 const Content = styled.div`
   width: 45%;
-  height: 90%;
+  height: 100%;
   display: flex;
+  gap: 10px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* background-color: red; */
+
 `;
 const Title = styled.div`
   width: 100%;
-  height: 10%;
-  text-align: center;
-  padding: 5px;
-  color: rgb(80, 100, 143);
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 const Formulario = styled.form`
-  height: 90%;
+  height: 75%;
   width: 90%;
   background-color: white;
   border-radius: 20px;
@@ -120,4 +120,6 @@ const ContentInputs = styled.div`
     }
   }
 `;
-const contentButtons = styled.div``;
+const Img = styled.img`
+  height: 300px;
+`;

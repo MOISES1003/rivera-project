@@ -18,7 +18,7 @@ const ContenForm = styled.article`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgb(226, 226, 226);
+  background: rgb(13, 10, 61);
   border-radius: 30px;
   box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.2);
 `;

@@ -4,10 +4,7 @@ import { Button } from "../../../../components/Button";
 import { handleSubmitForm } from "../../../../core/utils/handleSubmitForm";
 import { useState } from "react";
 import { useCreateUser } from "../../hooks/useCreateUser";
-import { ButtonIcons } from "../ButtonIcons";
-import aiconFacebook from "../../../../assets/images/facebook.png"
-import aiconGoogle from "../../../../assets/images/search.png"
-import aiconTwitter from "../../../../assets/images/twitter.png"
+import Logo from "../../../../assets/images/logo.png";
 export function FormRegister({ event }) {
   const { createLoading, createError, addUser } = useCreateUser();
   const [newUser, setNewUser] = useState({
@@ -23,7 +20,7 @@ export function FormRegister({ event }) {
   return (
     <Content>
       <Title>
-        <h1>OptiCore</h1>
+        <Img srcSet={Logo} alt="OptiCore" />
       </Title>
       <Formulario onSubmit={handleSubmitForm}>
         <h2>Sing in</h2>
@@ -57,14 +54,7 @@ export function FormRegister({ event }) {
           </div>
         </ContentInputs>
         {createLoading ? (
-          <Button
-            text="creating"
-            width="300px"
-            height="30px"
-            colorRgb="27, 125, 203"
-            colorTextRgb="255, 255, 255"
-            event={handleAddLens}
-          />
+     <h1>creando</h1>
         ) : (
           <Button
             text="Register"
@@ -75,14 +65,8 @@ export function FormRegister({ event }) {
             event={handleAddLens}
           />
         )}
-
         <h1>{createError}</h1>
         <h1>Comprar</h1>
-        {/* <ContentButtons>
-        <ButtonIcons Icon={aiconFacebook}/>
-        <ButtonIcons Icon={aiconGoogle}/>
-        <ButtonIcons Icon={aiconTwitter}/>
-      </ContentButtons> */}
       </Formulario>
     </Content>
   );
@@ -90,22 +74,23 @@ export function FormRegister({ event }) {
 
 const Content = styled.div`
   width: 45%;
-  height: 90%;
+  height: 100%;
   display: flex;
+  gap: 10px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* background-color: red; */
+
 `;
 const Title = styled.div`
   width: 100%;
-  height: 10%;
-  text-align: center;
-  padding: 5px;
-  color: rgb(80, 100, 143);
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 const Formulario = styled.form`
-  height: 90%;
+  height: 75%;
   width: 90%;
   background-color: white;
   border-radius: 20px;
@@ -125,20 +110,18 @@ const ContentInputs = styled.div`
     .recoverPassword {
       color: #6262e4;
       right: 0;
-      border:none;
+      border: none;
       background-color: transparent;
       cursor: pointer;
       font-size: 15px;
       transition: all 0.5s ease-in-out;
-      &:hover{
+      &:hover {
         color: #676752;
       }
     }
   }
 `;
-const ContentButtons = styled.div`
-width: 200px;
-display:flex;
-margin-top:10px;
-justify-content: space-around;
+
+const Img = styled.img`
+  height: 300px;
 `;
