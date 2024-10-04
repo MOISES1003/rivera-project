@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { GetCookie } from "../../core/infrastructure/services/CookieService";
 import axios from "axios";
 import { NotFoundPage } from "../../pages/404/NotFoundPage";
+import { SideBar } from "../../components/sideBar/SideBar";
+import styled from "styled-components";
 
 export function MyRouters() {
   const [token, setToken] = useState(GetCookie("token"));
@@ -29,12 +31,15 @@ export function MyRouters() {
   return (
     <BrowserRouter>
       {token ? (
-        <Routes>
-          <Route path={HOME.PATH} element={<HOME.COMPONENT />} />
-          <Route path={LENTES.PATH} element={<LENTES.COMPONENT />} />
-          <Route path="*" element={<NotFoundPage />} />
-          {/* Redirige a LOGIN si se intenta acceder a una ruta no definida */}
-        </Routes>
+        <Content>
+          <SideBar />
+          <Routes>
+            <Route path={HOME.PATH} element={<HOME.COMPONENT />} />
+            <Route path={LENTES.PATH} element={<LENTES.COMPONENT />} />
+            <Route path="*" element={<NotFoundPage />} />
+            {/* Redirige a LOGIN si se intenta acceder a una ruta no definida */}
+          </Routes>
+        </Content>
       ) : (
         <Routes>
           <Route path={LOGIN.PATH} element={<LOGIN.COMPONENT />} />
@@ -45,3 +50,11 @@ export function MyRouters() {
     </BrowserRouter>
   );
 }
+const Content = styled.main`
+position: absolute;
+display: flex;
+background-color: rgb(219, 220, 224);
+width: 100vw;
+height: 100vh; /* Asegura que ocupe toda la pantalla */
+transition: all 0.5s ease;
+`;

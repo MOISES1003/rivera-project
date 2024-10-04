@@ -5,11 +5,11 @@ const initialState = {
   links: [],
   pageStatic: "",
   loading: false,
-  error: null,
+  error: null
 };
 
 const lensSlice = createSlice({
-  name: "lens",
+  name: "lens", 
   initialState,
   reducers: {
     fetchLensesStart: (state) => {
@@ -26,6 +26,7 @@ const lensSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
+    //pare crear los lentes
     createLensStart: (state) => {
       state.loading = true;
       state.error = null;

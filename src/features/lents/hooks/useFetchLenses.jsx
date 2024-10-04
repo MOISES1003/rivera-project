@@ -11,8 +11,7 @@ export function useFetchLenses() {
   const pageStatic = useSelector((state) => state.lens.pageStatic);
   const loading = useSelector((state) => state.lens.loading);
   const error = useSelector((state) => state.lens.error);
-
-  const loadLenses = () => {
+  const loadLenses = async () => {
     dispatch(fetchLenses(pageStatic));
   };
 
