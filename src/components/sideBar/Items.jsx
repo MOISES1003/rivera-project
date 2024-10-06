@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { FaTachometerAlt } from "react-icons/fa";
 import { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 
 export function Item({ item, subItem, active }) {
   const [activeText, setActiveText] = useState(false);
@@ -26,12 +27,14 @@ export function Item({ item, subItem, active }) {
       </Title>
       <ContenSubItens>
         {subItem.map((sub) => (
-          <SubItem active={active}>
-            <Label>
-              <Icon active={active} />
-              {activeText ? sub.name : sub.name.charAt(-1).toUpperCase()}
-            </Label>
-          </SubItem>
+          <NavLink to={sub.path}>
+            <SubItem active={active}>
+              <Label>
+                <Icon active={active} />
+                {activeText ? sub.name : sub.name.charAt(-1).toUpperCase()}
+              </Label>
+            </SubItem>
+          </NavLink>
         ))}
       </ContenSubItens>
     </ItemContent>
@@ -48,7 +51,7 @@ const ItemContent = styled.div`
 const Title = styled.h4`
   transform: ${(props) =>
     props.active ? "translate(0, 0)" : "translate(20%, 0)"};
-  transition: all 0.8s ease; /* Suave transición para todos los cambios */
+  transition: all 0.2s ease; 
   text-transform: capitalize;
   font-weight: 900;
   display: flex;
@@ -70,18 +73,25 @@ const ContenSubItens = styled.div`
 `;
 const SubItem = styled.div`
   /* background-color: red; */
+  width: 220px;
   padding: 5px;
-  transition: all 0.8s ease;
+  transition: all 0.2s ease;  
   display: flex;
   align-items: center;
   transform: ${(props) =>
     props.active ? "translate(15%, 0)" : "translate(0, 0)"};
+  cursor: pointer;
+  border-radius: 15px;
+  &:hover {
+    background-color: rgb(185, 185, 185);
+    border-radius: 10px;
+  }
 `;
 const Label = styled.p`
-display: flex;
-align-items: center; 
-justify-content: center;
-gap: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
 `;
 const Icon = styled(FaTachometerAlt)`
   position: relative;

@@ -1,4 +1,4 @@
-import CreateLentsDto from "../../dto/createLentsDto";
+import LentsDto from "../../dto/lentsDto";
 import LentsEntitie from "../../entities/lentsEntitie";
 
 class CreateLens {
@@ -13,7 +13,7 @@ class CreateLens {
       throw new Error("el stock del lente no puede ser 0")
     }
 
-    const lenstDto = new CreateLentsDto(lensEntity);
+    const lenstDto = new LentsDto(lensEntity);
     return await this.lensRepository.create(lenstDto);
   }
 }

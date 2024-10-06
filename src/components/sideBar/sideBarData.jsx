@@ -1,14 +1,17 @@
+import ROUTES from "../../app/routes/routes";
+
+const { LENTES, LOGIN, MONTURA } = ROUTES;
 const DataItems = [
-//   {
-//     id: 1,
-//     name: "Dashboard",
-//     // icon: <MdCategory />,
-//     path: "/dashboard",
-//   },
+  //   {
+  //     id: 1,
+  //     name: "Dashboard",
+  //     // icon: <MdCategory />,
+  //     path: "/dashboard",
+  //   },
   {
-    id: 3,
-    name: "Productos",
-    // icon: <FaBoxOpen />,
+    name: "Balance",
+    // icon: <FaChartLine />,
+    path: "/balance",
     subItems: [
       { name: "Listado de Productos", path: "/productos" },
       { name: "Lotes", path: "/lotes" },
@@ -16,38 +19,23 @@ const DataItems = [
     ],
   },
   {
-    id: 4,
-    name: "ventas",
+    name: "Insumos",
+    // icon: <FaBoxOpen />,
+    subItems: [
+      { name: "Monturas", path: MONTURA.PATH },
+      { name: "Lunas", path: LENTES.PATH },
+      { name: "Medicamentos", path: "/categorias" },
+    ],
+  },
+  {
+    name: "Clientes",
     // icon: <FaTruck />,
     path: "/proveedores",
     subItems: [
-        { name: "Listado de Productos", path: "/productos" },
-        { name: "Lotes", path: "/lotes" },
-        { name: "Categorias", path: "/categorias" },
-      ],
-  },
-
-  {
-    id: 5,
-    name: "Balance",
-    // icon: <FaChartLine />,
-    path: "/balance",
-    subItems: [
-        { name: "Listado de Productos", path: "/productos" },
-        { name: "Lotes", path: "/lotes" },
-        { name: "Categorias", path: "/categorias" },
-      ],
-  },
-  {
-    id: 9,
-    name: "Inventario",
-    // icon: <FaChartLine />,
-    path: "/balance",
-    subItems: [
-        { name: "Listado de Productos", path: "/productos" },
-        { name: "Lotes", path: "/lotes" },
-        { name: "Categorias", path: "/categorias" },
-      ],
+      { name: "Histotial", path: "/productos" },
+      { name: "Operaciones", path: "/lotes" },
+      { name: "Citas", path: "/categorias" },
+    ],
   },
 ];
 

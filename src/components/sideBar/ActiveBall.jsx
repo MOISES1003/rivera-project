@@ -3,13 +3,13 @@ import styled from "styled-components";
 import { Md3DRotation } from "react-icons/md";
 
 export function ActiveBall({ event, active }) {
-  return <BallDiv onClick={event}>{active ? <Md3DRotation /> : <Md3DRotation />}</BallDiv>;
+  return <BallDiv onClick={event} active={active}>{active ? <Md3DRotation /> : <Md3DRotation />}</BallDiv>;
 }
 const BallDiv = styled.button`
   width: 35px;
   height: 35px;
   position: absolute;
-  right: -15px;
+  right: ${(props)=>props.active ? "10px": "-5px"};
   top: 80px;
   background-color: red;
   border: none;

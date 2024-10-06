@@ -1,80 +1,43 @@
 import { useEffect, useState } from "react";
 import { useCreateLens } from "../hooks/useCreateLens";
 import { useFetchLenses } from "../hooks/useFetchLenses";
+import styled from "styled-components";
+import { FormCreateLens } from "./Form/FormCreateLens";
+import { CardLens } from "./CardLens";
 
 export function LensList() {
-  const { lenses, links, loading, error, loadLenses } = useFetchLenses();
-  const { createLoading, createError, addLens } = useCreateLens();
-  const [reload, setReload] = useState(false);
-  const [newLens, setNewLens] = useState({
-    codigo: "",
-    nombre: "",
-    serie: "",
-    stock: "",
-    marca: "",
-  });
+  const { lenses, loadLenses } = useFetchLenses();
+  const [activeCardIndex, setActiveCardIndex] = useState(null);
+  const handleCardClick = (index) => {
+    // Si la carta que se hace clic es la misma que la activa, se desactiva
+    setActiveCardIndex((prevIndex) => (prevIndex === index ? null : index));
+  };
   useEffect(() => {
     loadLenses();
   }, []);
 
-  const handleAddLens = () => {
-    addLens(newLens);
-    setNewLens({ codigo: "", nombre: "", serie: "", stock: "", marca: "" });
-  };
-  const btnLinks = () => {
-    console.log(links);
-  };
   return (
-    <div>
-      {loading && <p>Loading...</p>}
-      {error && <p>Error: {error}</p>}
-      <ul>
-        {lenses.map((lens) => (
-          <li key={lens.id_lentes}>{lens.nombre}</li>
-        ))}
-      </ul>
-      <div>
-        <h3>add New Lens</h3>
-        <input
-          type="text"
-          value={newLens.codigo}
-          onChange={(e) => setNewLens({ ...newLens, codigo: e.target.value })}
-          placeholder="codigo:"
+    <Cotent>
+      {lenses.map((lens) => (
+        <CardLens item={lens}
+        key={lens.id_lentes} 
+        active={activeCardIndex === lens.id_lentes} 
+        onClick={() => handleCardClick(lens.id_lentes)} 
         />
-        <input
-          type="text"
-          value={newLens.nombre}
-          onChange={(e) => setNewLens({ ...newLens, nombre: e.target.value })}
-          placeholder="nombre:"
-        />
-        <input
-          type="text"
-          value={newLens.serie}
-          onChange={(e) => setNewLens({ ...newLens, serie: e.target.value })}
-          placeholder="serie:"
-        />
-        <input
-          type="number"
-          value={newLens.stock}
-          onChange={(e) =>
-            setNewLens({ ...newLens, stock: parseInt(e.target.value, 10) })
-          }
-          placeholder="Stock:"
-        />
-        <input
-          type="text"
-          value={newLens.marca}
-          onChange={(e) => setNewLens({ ...newLens, marca: e.target.value })}
-          placeholder="marca:"
-        />
-        <button onClick={handleAddLens} disabled={createLoading}>
-          {createLoading ? "Creating..." : "Add Lens"}
-        </button>
-        <button onClick={btnLinks}>
-          btn links
-        </button>
-        {createError && <p>Error: {createError}</p>}
-      </div>
-    </div>
+      ))}
+    </Cotent>
   );
 }
+const Cotent = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  /* padding: 10px; */
+  /* align-items: center; */
+  gap: 20px;
+  /* background-color: yellow; */
+  height: 90%;
+  width: 100%;
+  overflow-y: auto;
+`;

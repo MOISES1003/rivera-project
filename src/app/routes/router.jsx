@@ -9,7 +9,7 @@ import styled from "styled-components";
 
 export function MyRouters() {
   const [token, setToken] = useState(GetCookie("token"));
-  const { HOME, LENTES, LOGIN } = ROUTES;
+  const { HOME, LENTES, LOGIN , MONTURA } = ROUTES;
 
   useEffect(() => {
     // Función para verificar el token
@@ -36,6 +36,7 @@ export function MyRouters() {
           <Routes>
             <Route path={HOME.PATH} element={<HOME.COMPONENT />} />
             <Route path={LENTES.PATH} element={<LENTES.COMPONENT />} />
+            <Route path={MONTURA.PATH} element={<MONTURA.COMPONENT />} />
             <Route path="*" element={<NotFoundPage />} />
             {/* Redirige a LOGIN si se intenta acceder a una ruta no definida */}
           </Routes>
@@ -53,8 +54,9 @@ export function MyRouters() {
 const Content = styled.main`
 position: absolute;
 display: flex;
-background-color: rgb(219, 220, 224);
+background-color: ${(props) => props.theme.bodyColor};
+color: ${(props) => props.theme.color};
 width: 100vw;
 height: 100vh; /* Asegura que ocupe toda la pantalla */
-transition: all 0.5s ease;
+/* transition: all 0.5s ease; */
 `;

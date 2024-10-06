@@ -30,7 +30,7 @@ const ContentImg = styled.div`
 `;
 const ContentData = styled.div`
   flex-grow: 1; //Ocupa el espacio restante
-  transition-delay:${(props) => (props.active ? " 0.5s" : "0s")} ;
+  transition-delay:${(props) => (props.active ? " 0.3s" : "0s")} ;
   display: flex;
   flex-direction: column;
   justify-content: center;

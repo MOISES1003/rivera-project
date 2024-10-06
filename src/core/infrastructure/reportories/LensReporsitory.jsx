@@ -17,6 +17,7 @@ class LensRepository extends ILensRepository {
 
   async create(lens) {
     const response = await POST("/lentes/CreateLente", lens);
+    console.log(response.data)
     return response.data;
   }
   //

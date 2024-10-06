@@ -33,8 +33,8 @@ const lensSlice = createSlice({
     },
     createLensSuccess: (state, action) => {
       state.loading = false;
-      state.lenses.push(action.payload);
-    },
+      state.lenses.push(action.payload);  // Aquí se asegura de que agregas el lente completo
+    },    
     createLensFailure: (state, action) => {
       state.loading = false;
       state.error = action.payload;

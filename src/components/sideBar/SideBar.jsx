@@ -16,9 +16,9 @@ export function SideBar() {
         <UserData active={active}/>
         <span className="decorate" active={active} />
         <ContenItems>
-          {DataItems.map((item) => (
+          {DataItems.map((item,index) => (
             <Item
-              key={item.id}
+              key={index}
               item={item}
               subItem={item.subItems}
               active={active}
@@ -33,14 +33,16 @@ export function SideBar() {
 
 const ContenSidebar = styled.div`
   height: 100vh;
-  width: ${(props) => (props.active ? "300px" : "70px")};
+  width: ${(props) => (props.active ? "300px" : "80px")};
   display: flex;
   transition: all 0.5s ease;
   position: relative;
   align-items: center;
   flex-shrink: 0;
+  z-index: 10;
   @media (max-width: 800px) {
     position: absolute;
+    width: ${(props) => (props.active ? "300px" : "20px")};
   }
 `;
 
@@ -48,7 +50,7 @@ const Content = styled.div`
   width: ${(props) => (props.active ? "95%" : "50px")};
   height: 95%;
   border-radius: 20px;
-  background-color: rgb(244, 244, 246);
+  background-color: ${(props)=>props.theme.sideColor};
   transition: all 0.5s ease;
   display: flex;
   align-items: center;
@@ -57,6 +59,11 @@ const Content = styled.div`
   margin-left: 10px;
   /* gap: 10px; */
   overflow-x: none;
+  @media (max-width: 800px) {
+    margin-left: 0px;
+    width: ${(props) => (props.active ? "95%" : "0px")};
+    
+  }
   .decorate {
     height: 3px;
     width: ${(props) => (props.active ? "60%" : "50%")};

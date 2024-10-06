@@ -1,6 +1,8 @@
-//en caso venga un array dentro del objeto, digamos que vendra todos los clientes que compraron el lente se colocara lo siguiente clientes = []
-//y luego this.clientes = clientes en caso la logica del negocio lo pida asi
-class LentsEntitie {
+// CreateLensDTO es una clase que se utiliza para transferir datos de un nuevo lente
+// desde la interfaz de usuario al dominio de la aplicación. Este DTO se asegura de que
+// los datos necesarios estén presentes y correctamente formateados antes de crear una nueva entidad Lens.
+
+class LentsDto {
   constructor({
     id_lentes,
     id_tipoLuna,
@@ -17,7 +19,6 @@ class LentsEntitie {
     descripcion,
     precio,
     id_proveedor,
-    tipoluna
   }) {
     this.id_lentes = id_lentes;
     this.id_empresa = 1;
@@ -35,12 +36,7 @@ class LentsEntitie {
     this.descripcion = descripcion;
     this.precio = precio;
     this.id_proveedor = id_proveedor;
-    this.inStock = this.isInstock(); // Añadimos esta propiedad
-    this.tipoluna = tipoluna; 
-  }
-
-  isInstock() {
-    return this.stock > 0;
   }
 }
-export default LentsEntitie;
+
+export default LentsDto;
