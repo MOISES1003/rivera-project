@@ -4,6 +4,7 @@ import { useFetchLenses } from "../hooks/useFetchLenses";
 import styled from "styled-components";
 import { FormCreateLens } from "./Form/FormCreateLens";
 import { CardLens } from "./CardLens";
+import { useFetchTipoLuna } from "../../tipoLunas/hooks/useFetchTipoLuna";
 
 export function LensList() {
   const { lenses, loadLenses } = useFetchLenses();
@@ -40,4 +41,5 @@ const Cotent = styled.div`
   height: 90%;
   width: 100%;
   overflow-y: auto;
+  transition: all 0.5s ease;
 `;

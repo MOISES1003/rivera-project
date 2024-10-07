@@ -29,6 +29,7 @@ const ContentList = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
+  transition: all 0.5s ease;
   /* overflow: hidden; */
 `;
 const ContenForm = styled.div`
@@ -37,4 +38,5 @@ const ContenForm = styled.div`
   gap: 10px;
   right: 5px;
   top: 50px;
+  z-index: 20;
 `;

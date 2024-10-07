@@ -30,7 +30,7 @@ export function Item({ item, subItem, active }) {
           <NavLink to={sub.path}>
             <SubItem active={active}>
               <Label>
-                <Icon active={active} />
+                <Icon as={sub.icon} active={active} />
                 {activeText ? sub.name : sub.name.charAt(-1).toUpperCase()}
               </Label>
             </SubItem>
@@ -93,7 +93,13 @@ const Label = styled.p`
   justify-content: center;
   gap: 5px;
 `;
-const Icon = styled(FaTachometerAlt)`
+// const Icon = styled(FaTachometerAlt)`
+//   position: relative;
+//   transition: ${(props) => (props.active ? "all 0s ease" : "all 0.5s ease")};
+//   left: ${(props) => (props.active ? "0" : "40%")};
+//   font-size: 20px;
+// `;
+const Icon = styled.div`
   position: relative;
   transition: ${(props) => (props.active ? "all 0s ease" : "all 0.5s ease")};
   left: ${(props) => (props.active ? "0" : "40%")};

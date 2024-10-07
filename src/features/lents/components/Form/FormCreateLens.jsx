@@ -1,49 +1,57 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useCreateLens } from "../../hooks/useCreateLens";
 import styled, { keyframes } from "styled-components";
+import { ComboBox } from "../../../../components/ComboBox";
+import { useFetchTipoLuna } from "../../../tipoLunas/hooks/useFetchTipoLuna";
+import { ToggleButton } from "../../../../components/ToggleButton";
 
 export function FormCreateLens() {
   const [newLens, setNewLens] = useState({
-    id_tipoLuna:1,
-    caracteristicas_Principal:"",
-    poder_dioptria:0,
-    stock:0,
-    nivel_antirreflejo:"",
-    polarizacion:false,
-    proteccion_uv:false,
-    indice_refraccion:0,
-    fotocromatica:false,
-    color_luna:"#000",
-    material:"",
-    descripcion:"",
-    precio:0,
-    id_proveedor:1
+    id_tipoLuna: 1,
+    caracteristicas_Principal: "",
+    poder_dioptria: 0,
+    stock: 0,
+    nivel_antirreflejo: "",
+    polarizacion: false,
+    proteccion_uv: false,
+    indice_refraccion: 0,
+    fotocromatica: false,
+    color_luna: "#000000",
+    material: "",
+    descripcion: "",
+    precio: 0,
+    id_proveedor: 1,
   });
-  const { createLoading, createError, addLens } = useCreateLens();
+  const { addLens } = useCreateLens();
+  const { tipoLunas, loading, error, loadTipoLunas } = useFetchTipoLuna();
   const handleChange = (e) => {
     const { name, value } = e.target;
     setNewLens({ ...newLens, [name]: value });
+    console.log(newLens);
   };
   const handleAdd = async (e) => {
     e.preventDefault(); // Esto previene el comportamiento de refrescar la página
     await addLens(newLens);
     setNewLens({
-      id_tipoLuna:1,
-      caracteristicas_Principal:"",
-      poder_dioptria:0,
-      stock:0,
-      nivel_antirreflejo:"",
-      polarizacion:false,
-      proteccion_uv:false,
-      indice_refraccion:0,
-      fotocromatica:false,
-      color_luna:"",
-      material:"",
-      descripcion:"",
-      precio:0,
-      id_proveedor:1
+      id_tipoLuna: 1,
+      caracteristicas_Principal: "",
+      poder_dioptria: 0,
+      stock: 0,
+      nivel_antirreflejo: "",
+      polarizacion: false,
+      proteccion_uv: false,
+      indice_refraccion: 0,
+      fotocromatica: false,
+      color_luna: "#000000",
+      material: "",
+      descripcion: "",
+      precio: 0,
+      id_proveedor: 1,
     });
   };
+  useEffect(() => {
+    loadTipoLunas();
+  }, []);
   return (
     <Form onSubmit={handleAdd}>
       <Title>Register</Title>
@@ -60,7 +68,6 @@ export function FormCreateLens() {
           />
           <span>Poder Dioptria</span>
         </Label>
-
         <Label>
           <Input
             type="text"
@@ -72,7 +79,48 @@ export function FormCreateLens() {
           />
           <span>stock</span>
         </Label>
+        <Label>
+          <Input
+            type="text"
+            name="indice_refraccion"
+            value={newLens.indice_refraccion}
+            onChange={handleChange}
+            placeholder=""
+            required
+          />
+          <span>Indice Refraccion</span>
+        </Label>
+        <Label>
+          <Input
+            type="text"
+            name="precio"
+            value={newLens.precio}
+            onChange={handleChange}
+            placeholder=""
+            required
+          />
+          <span>precio</span>
+        </Label>
       </Flex>
+
+      <ContenUtils>
+        <ComboBox
+          onChange={(value) => setNewLens({ ...newLens, id_tipoLuna: value })}
+          options={tipoLunas}
+        />
+        <Label>
+          <span>Color</span>
+          <input
+            type="color"
+            name="color_luna"
+            value={newLens.color_luna}
+            onChange={handleChange}
+            placeholder=""
+            className="_color"
+            required
+          />
+        </Label>
+      </ContenUtils>
       <ContenInputs>
         <Label>
           <Input
@@ -99,28 +147,6 @@ export function FormCreateLens() {
         <Label>
           <Input
             type="text"
-            name="indice_refraccion"
-            value={newLens.indice_refraccion}
-            onChange={handleChange}
-            placeholder=""
-            required
-          />
-          <span>Indice Refraccion</span>
-        </Label>
-        <Label>
-          <input
-            type="color"
-            name="color_luna"
-            value={newLens.color_luna}
-            onChange={handleChange}
-            placeholder=""
-            required
-          />
-          <span>Color</span>
-        </Label>
-        <Label>
-          <Input
-            type="text"
             name="material"
             value={newLens.material}
             onChange={handleChange}
@@ -140,20 +166,12 @@ export function FormCreateLens() {
           />
           <span>descripcion</span>
         </Label>
-        <Label>
-          <Input
-            type="text"
-            name="precio"
-            value={newLens.precio}
-            onChange={handleChange}
-            placeholder=""
-            required
-          />
-          <span>precio</span>
-        </Label>
+        <ToggleButton text="polarizacion" value={newLens.polarizacion} event={(value) => setNewLens({ ...newLens, polarizacion: value })}/>
+        <ToggleButton  text="proteccion UV" value={newLens.proteccion_uv} event={(value) => setNewLens({ ...newLens, proteccion_uv: value })}/>
+        <ToggleButton  text="fotocromatica" value={newLens.fotocromatica} event={(value) => setNewLens({ ...newLens, fotocromatica: value })}/>
       </ContenInputs>
 
-      <SubmitButton type="submit">Submit</SubmitButton>
+      <SubmitButton type="submit">Registrar</SubmitButton>
     </Form>
   );
 }
@@ -180,7 +198,6 @@ const Form = styled.form`
   background-color: #1a1a1a;
   color: #fff;
   border: 1px solid #333;
-  z-index: 20;
 `;
 
 const Title = styled.p`
@@ -213,20 +230,28 @@ const Message = styled.p`
   font-size: 14.5px;
   color: rgba(255, 255, 255, 0.7);
 `;
-
 const Flex = styled.div`
   display: flex;
+  flex-wrap: wrap;
   width: 100%;
   gap: 6px;
+  /* background-color: red; */
+  justify-content: space-between;
+  input {
+    width: 130px;
+  }
 `;
 const ContenInputs = styled.div`
   overflow-y: auto;
   overflow-x: none;
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   gap: 10px;
   max-height: 250px;
   padding: 5px;
+  flex-wrap: wrap;
+
+  justify-content: center;
   &::-webkit-scrollbar {
     width: 4px;
   }
@@ -235,7 +260,6 @@ const ContenInputs = styled.div`
     border-radius: 15px;
   }
 `;
-
 const Label = styled.label`
   position: relative;
 `;
@@ -291,4 +315,13 @@ const SubmitButton = styled.button`
   &:hover {
     background-color: #00bfff96;
   }
+`;
+const ContenUtils = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+  /* background-color: red; */
+  gap: 10px;
 `;

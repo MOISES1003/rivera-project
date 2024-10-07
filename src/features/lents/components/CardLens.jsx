@@ -2,13 +2,14 @@ import { useEffect, useRef, useState } from "react";
 import styled, { keyframes } from "styled-components";
 import img from "../../../assets/images/lunas.png"; // Asegúrate de que esta ruta sea correcta
 import { colorizeLens } from "../../../core/utils/colorUtils";
+import { EditButtonComponent } from "../../../components/EditButtonComponent";
 
-export function CardLens({ item ,active,onClick }) {
+export function CardLens({ item, active, onClick }) {
   const canvasRef = useRef(null);
   useEffect(() => {
     const canv = canvasRef.current;
     if (canv) {
-      console.log("Color Luna:", item.color_luna); // Verificar valor aquí
+      // console.log("Color Luna:", item.color_luna); // Verificar valor aquí
       colorizeLens(canv, img, item.color_luna); // Verifica que `item.color_luna` tenga un valor válido
     }
   }, [item.color_luna]); // Se vuelve a ejecutar si `color_luna` cambia
@@ -21,6 +22,7 @@ export function CardLens({ item ,active,onClick }) {
       <Back>
         <BackContent>
           <h4>{item.tipoluna.nombre}</h4>
+          <EditButtonComponent color={item.color_luna}/>
         </BackContent>
       </Back>
       <Front>
@@ -67,13 +69,16 @@ const Card = styled.div`
   box-shadow: 0px 0px 10px 1px #000000ee;
   border-radius: 5px;
   transition: all 0.5s ease;
-  transform: ${(props)=>props.active ? "rotatey(180deg)":"rotatey(0deg)"} ;
+  transform: ${(props) => (props.active ? "rotatey(180deg)" : "rotatey(0deg)")};
   .Image {
     transition: all 0.5s ease;
     position: absolute;
     /* bottom: 0; */
     z-index: 1;
-    transform: ${(props)=>props.active ? "translateY(60px)":"translateY(0px)"};
+    transform: ${(props) =>
+      props.active
+        ? "translateY(50px) translateX(-25px)"
+        : "translateY(10px)  translateX(35px)"};
   }
 `;
 
@@ -105,6 +110,7 @@ const BackContent = styled.div`
   justify-content: center;
   align-items: center;
   gap: 30px;
+  padding-top: 100px;
 `;
 
 const Front = styled(Side)`
@@ -154,6 +160,8 @@ const CardFooter = styled.p`
   color: #ffffff88;
   margin-top: 5px;
   font-size: 8px;
+  height: 50px;
+  width: 100%;
 `;
 
 const ImgContainer = styled.div`

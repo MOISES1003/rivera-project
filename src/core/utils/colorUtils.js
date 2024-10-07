@@ -11,7 +11,7 @@ export function colorizeLens(canvas, src, color) {
 
         // Convierte el color hexadecimal a RGB
         const rgbColor = hexToRgb(color);
-        console.log('Color RGB:', rgbColor); // Verifica el color RGB
+        // console.log('Color RGB:', rgbColor); // Verifica el color RGB
 
         // Aplica el color con un estilo de mezcla
         ctx.globalCompositeOperation = 'source-atop'; // Mezcla el color con el contenido ya dibujado

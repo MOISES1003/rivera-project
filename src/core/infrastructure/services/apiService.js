@@ -1,21 +1,25 @@
-import apiClient from '../clients/apiClient';
+import apiClient from "../clients/apiClient";
 
 // CONSULTA GET
 export async function GET(url, pageEstatic) {
     try {
         const response = await apiClient.get(pageEstatic ? pageEstatic : url);
-        console.log(response);
-        return {
-            data: response.data.data,
-            links: {
-                current_page: response.data.current_page,
-                last_page: response.data.last_page,
-                next_page_url: response.data.next_page_url,
-                prev_page_url: response.data.prev_page_url,
-                first_page_url: response.data.first_page_url,
-                last_page_url: response.data.last_page_url,
-            }
-        };
+        // console.log(response);
+        if (response.data.data) {
+            return {
+                data: response.data.data,
+                links: {
+                    current_page: response.data.current_page,
+                    last_page: response.data.last_page,
+                    next_page_url: response.data.next_page_url,
+                    prev_page_url: response.data.prev_page_url,
+                    first_page_url: response.data.first_page_url,
+                    last_page_url: response.data.last_page_url,
+                },
+            };
+        } else {
+            return response;
+        }
     } catch (error) {
         console.error("Error en GET:", error);
         throw error;
@@ -62,7 +66,7 @@ export async function LOADIMG(formData) {
         const formDataWithImg = new FormData();
         formDataWithImg.append("file", formData.imagen_url);
 
-        const response = await apiClient.post('/upload-image', formDataWithImg);
+        const response = await apiClient.post("/upload-image", formDataWithImg);
         return response.data.url;
     } catch (error) {
         console.error("Error en LOADIMG:", error);
@@ -83,7 +87,7 @@ export async function NAVEGATION(url) {
                 prev_page_url: response.data.prev_page_url,
                 first_page_url: response.data.first_page_url,
                 last_page_url: response.data.last_page_url,
-            }
+            },
         };
     } catch (error) {
         console.error("Error en NAVEGATION:", error);

@@ -1,30 +1,28 @@
 import ROUTES from "../../app/routes/routes";
+import { IoMdGlasses } from "react-icons/io";
+import { FaGlasses } from "react-icons/fa";
+
+
 
 const { LENTES, LOGIN, MONTURA } = ROUTES;
 const DataItems = [
-  //   {
-  //     id: 1,
-  //     name: "Dashboard",
-  //     // icon: <MdCategory />,
-  //     path: "/dashboard",
-  //   },
   {
     name: "Balance",
     // icon: <FaChartLine />,
     path: "/balance",
     subItems: [
-      { name: "Listado de Productos", path: "/productos" },
-      { name: "Lotes", path: "/lotes" },
-      { name: "Categorias", path: "/categorias" },
+      { name: "Listado de Productos", path: "/productos", icon: IoMdGlasses },
+      { name: "Lotes", path: "/lotes", icon: IoMdGlasses },
+      { name: "Categorias", path: "/categorias", icon: IoMdGlasses },
     ],
   },
   {
     name: "Insumos",
     // icon: <FaBoxOpen />,
     subItems: [
-      { name: "Monturas", path: MONTURA.PATH },
-      { name: "Lunas", path: LENTES.PATH },
-      { name: "Medicamentos", path: "/categorias" },
+      { name: "Monturas", path: MONTURA.PATH, icon: FaGlasses },
+      { name: "Lunas", path: LENTES.PATH, icon: IoMdGlasses },
+      { name: "Medicamentos", path: "/categorias", icon: IoMdGlasses },
     ],
   },
   {
@@ -32,9 +30,9 @@ const DataItems = [
     // icon: <FaTruck />,
     path: "/proveedores",
     subItems: [
-      { name: "Histotial", path: "/productos" },
-      { name: "Operaciones", path: "/lotes" },
-      { name: "Citas", path: "/categorias" },
+      { name: "Histotial", path: "/productos", icon: IoMdGlasses },
+      { name: "Operaciones", path: "/lotes", icon: IoMdGlasses },
+      { name: "Citas", path: "/categorias", icon: IoMdGlasses },
     ],
   },
 ];
