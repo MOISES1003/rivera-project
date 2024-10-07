@@ -8,6 +8,9 @@ class ILensRepository {
   getByLens(id) {
     throw new Error("Metodo no Implementado");
   }
+  getNavigateLens(link) {
+    throw new Error("Metodo no Implementado");
+  }
   update(lents) {
     throw new Error("Metodo no Implementado");
   }

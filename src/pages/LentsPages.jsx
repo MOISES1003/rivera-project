@@ -4,18 +4,31 @@ import { BtnAdd } from "../components/BtnAdd";
 import { FormCreateLens } from "../features/lents/components/Form/FormCreateLens";
 import { useState } from "react";
 import { useFetchLenses } from "../features/lents/hooks/useFetchLenses";
+import { Paginator } from "primereact/paginator";
+import { Paginate } from "../components/Paginate";
+import { useNavigateLenses } from "../features/lents/hooks/useNavigateLens";
 
 export function LentsPage() {
   const [active, setActive] = useState(false);
-  const {links, loading, error } = useFetchLenses();
+  const { links, loading, error } = useFetchLenses();
+  const { NavigateLenses } = useNavigateLenses();
+
   return (
     <ContentList>
       <ContenForm>
         {active ? <FormCreateLens /> : null}
-        <BtnAdd active={active} setActive={setActive}/>
+        <BtnAdd active={active} setActive={setActive} />
       </ContenForm>
-
       <LensList />
+      {/* <Paginator
+        first={0}
+        rows={links.current_page}
+        totalRecords={links.last_page}
+        onPageChange={onPageChange}
+        template="FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
+      /> */}
+      <Paginate links={links} NavigationEvent={NavigateLenses} />
+
       {loading && <p>Loading...</p>}
       {error && <p>Error: {error}</p>}
     </ContentList>

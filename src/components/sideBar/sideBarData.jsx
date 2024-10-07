@@ -1,6 +1,7 @@
 import ROUTES from "../../app/routes/routes";
 import { IoMdGlasses } from "react-icons/io";
 import { FaGlasses } from "react-icons/fa";
+import { GiMedicinePills } from "react-icons/gi";
 
 
 
@@ -22,7 +23,7 @@ const DataItems = [
     subItems: [
       { name: "Monturas", path: MONTURA.PATH, icon: FaGlasses },
       { name: "Lunas", path: LENTES.PATH, icon: IoMdGlasses },
-      { name: "Medicamentos", path: "/categorias", icon: IoMdGlasses },
+      { name: "Medicamentos", path: "/categorias", icon: GiMedicinePills },
     ],
   },
   {

@@ -7,7 +7,7 @@ import LentsEntitie from "../../domain/lents/entities/lentsEntitie";
 import ILensRepository from "../../domain/lents/interfaces/ILensRepository";
 import { serialize } from "../../utils/serialize";
 import { setPageStatic } from "../../utils/setPageStatic";
-import { GET, POST, PUT } from "../services/apiService";
+import { GET, NAVEGATION, POST, PUT } from "../services/apiService";
 
 class LensRepository extends ILensRepository {
   constructor(apiClient) {
@@ -24,6 +24,29 @@ class LensRepository extends ILensRepository {
   async getAll(paginaEstatica) {
     try {
       const response = await GET("/lentes/ShowAllLente/20", paginaEstatica);
+      const lensesData = response.data;
+      const links = response.links;
+      const pageStatic = setPageStatic(
+        links.first_page_url,
+        links.current_page
+      );
+      // Asegúrate de que lensesData tenga el formato esperado
+      if (Array.isArray(lensesData)) {
+        const data = lensesData.map((data) =>
+          serialize(new LentsEntitie(data))
+        );
+        return { data, links, pageStatic };
+      } else {
+        throw new Error("Datos recibidos en un formato inesperado.");
+      }
+    } catch (error) {
+      console.error("Error fetching lenses:", error);
+      throw error;
+    }
+  }
+  async getNavigateLens(link) {
+    try {
+      const response = await NAVEGATION(link);
       const lensesData = response.data;
       const links = response.links;
       const pageStatic = setPageStatic(
