@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { IoMdAdd } from "react-icons/io";
 
-export function BtnAdd({active,setActive}) {
+export function BtnAdd({active,funcion}) {
   return (
-    <Btn onClick={()=>setActive(!active)} active={active}>
+    <Btn onClick={()=>funcion()} active={active}>
       <IoMdAdd className="icon" />
     </Btn>
   );

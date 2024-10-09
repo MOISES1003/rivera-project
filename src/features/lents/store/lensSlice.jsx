@@ -3,16 +3,18 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   lenses: [],
   links: [],
+  lensToEdit:[],
   pageStatic: "",
   loading: false,
-  error: null
+  error: null,
+  active: false,  // Cambié 'ative' a 'active' correctamente
 };
 
 const lensSlice = createSlice({
-  name: "lens", 
+  name: "lens",
   initialState,
   reducers: {
-    fetchLensesStart: (state) => {
+    LensesStart: (state) => {
       state.loading = true;
       state.error = null;
     },
@@ -22,32 +24,46 @@ const lensSlice = createSlice({
       state.links = action.payload.links;
       state.pageStatic = action.payload.pageStatic;
     },
-    fetchLensesFailure: (state, action) => {
+    LensesFailure: (state, action) => {
       state.loading = false;
       state.error = action.payload;
     },
-    //pare crear los lentes
-    createLensStart: (state) => {
-      state.loading = true;
-      state.error = null;
+    openForm: (state, action) => {
+      state.active = true;
+      state.lensToEdit = action.payload; // Guardamos el lente que queremos editar
     },
+    closeForm: (state) => {
+      state.active = false;
+      state.lensToEdit = null; // Limpiamos el lente al cerrar el formulario
+    },
+    // Crear lentes
     createLensSuccess: (state, action) => {
       state.loading = false;
-      state.lenses.push(action.payload);  // Aquí se asegura de que agregas el lente completo
-    },    
-    createLensFailure: (state, action) => {
-      state.loading = false;
-      state.error = action.payload;
+      state.lenses.push(action.payload);
     },
+    // Editar lentes
+    updatedLensSuccess: (state, action) => {
+      console.log('payload recibido:', action.payload);  // Log para verificar el payload
+      state.loading = false;
+      const updatedLens = action.payload;
+      if (updatedLens && updatedLens.id_lentes) {
+        const index = state.lenses.findIndex((lens) => lens && lens.id_lentes === updatedLens.id_lentes);
+        if (index !== -1) {
+          state.lenses[index] = { ...state.lenses[index], ...updatedLens };
+        }
+      }
+    }
+    
   },
 });
 
 export const {
-  fetchLensesStart,
+  LensesStart,
+  LensesFailure,
   fetchLensesSuccess,
-  fetchLensesFailure,
-  createLensStart,
   createLensSuccess,
-  createLensFailure,
+  updatedLensSuccess,
+  openForm,  // Exportar las acciones del modal
+  closeForm,
 } = lensSlice.actions;
 export default lensSlice.reducer;

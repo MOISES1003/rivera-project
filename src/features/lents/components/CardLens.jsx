@@ -3,8 +3,15 @@ import styled, { keyframes } from "styled-components";
 import img from "../../../assets/images/lunas.png"; // Asegúrate de que esta ruta sea correcta
 import { colorizeLens } from "../../../core/utils/colorUtils";
 import { EditButtonComponent } from "../../../components/EditButtonComponent";
+import { activeFormLens } from "../hooks/activeFormLens";
 
 export function CardLens({ item, active, onClick }) {
+  const { handleOpenForm,editLent } = activeFormLens()
+  const handleOpenFormFunction = (lens) => {
+    console.log("Lente a editar:", lens); // Asegúrate de que el lente tiene los datos correctos
+    handleOpenForm(lens); // Abrir el modal
+  };
+  
   const canvasRef = useRef(null);
   useEffect(() => {
     const canv = canvasRef.current;
@@ -22,7 +29,7 @@ export function CardLens({ item, active, onClick }) {
       <Back>
         <BackContent>
           <h4>{item.tipoluna.nombre}</h4>
-          <EditButtonComponent color={item.color_luna}/>
+          <EditButtonComponent color={item.color_luna} event={()=>handleOpenFormFunction(item)}/>
         </BackContent>
       </Back>
       <Front>
@@ -96,6 +103,7 @@ const Back = styled(Side)`
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
 `;
 
 const BackContent = styled.div`

@@ -52,7 +52,8 @@ export async function POST(url, data) {
 // CONSULTA PUT
 export async function PUT(url, data) {
     try {
-        const response = await apiClient.put(url, data ? data : null);
+        const response = await apiClient.put(url, data);
+        console.log(response);
         return response.data;
     } catch (error) {
         console.error("Error en PUT:", error);

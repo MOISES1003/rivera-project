@@ -4,10 +4,11 @@ import styled, { keyframes } from "styled-components";
 import { ComboBox } from "../../../../components/ComboBox";
 import { useFetchTipoLuna } from "../../../tipoLunas/hooks/useFetchTipoLuna";
 import { ToggleButton } from "../../../../components/ToggleButton";
+import { useUpdatedLens } from "../../hooks/useUpdatedLens";
 
-export function FormCreateLens() {
+export function FormLens({ lensToEdit }) {
   const [newLens, setNewLens] = useState({
-    id_tipoLuna: 1,
+    id_tipoLuna: "",
     caracteristicas_Principal: "",
     poder_dioptria: 0,
     stock: 0,
@@ -23,7 +24,13 @@ export function FormCreateLens() {
     id_proveedor: 1,
   });
   const { addLens } = useCreateLens();
-  const { tipoLunas, loading, error, loadTipoLunas } = useFetchTipoLuna();
+  const { updatedLensfunction } = useUpdatedLens();
+  const { tipoLunas, loadTipoLunas } = useFetchTipoLuna();
+  useEffect(() => {
+    if (lensToEdit) {
+      setNewLens(lensToEdit); // Carga los valores de la lente que se quiere editar
+    }
+  }, [lensToEdit]);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setNewLens({ ...newLens, [name]: value });
@@ -33,7 +40,7 @@ export function FormCreateLens() {
     e.preventDefault(); // Esto previene el comportamiento de refrescar la página
     await addLens(newLens);
     setNewLens({
-      id_tipoLuna: 1,
+      id_tipoLuna: "",
       caracteristicas_Principal: "",
       poder_dioptria: 0,
       stock: 0,
@@ -49,11 +56,15 @@ export function FormCreateLens() {
       id_proveedor: 1,
     });
   };
+  const handleEdit = async (e) => {
+    e.preventDefault(); // Esto previene el comportamiento de refrescar la página
+    await updatedLensfunction(newLens);
+  };
   useEffect(() => {
     loadTipoLunas();
   }, []);
   return (
-    <Form onSubmit={handleAdd}>
+    <Form onSubmit={lensToEdit ? handleEdit : handleAdd}>
       <Title>Register</Title>
       <Message>Registra nuevas lunas.</Message>
       <Flex>
@@ -107,6 +118,7 @@ export function FormCreateLens() {
         <ComboBox
           onChange={(value) => setNewLens({ ...newLens, id_tipoLuna: value })}
           options={tipoLunas}
+          preValue={newLens.id_tipoLuna} // Asegurar que el valor actual se muestra
         />
         <Label>
           <span>Color</span>
@@ -166,12 +178,26 @@ export function FormCreateLens() {
           />
           <span>descripcion</span>
         </Label>
-        <ToggleButton text="polarizacion" value={newLens.polarizacion} event={(value) => setNewLens({ ...newLens, polarizacion: value })}/>
-        <ToggleButton  text="proteccion UV" value={newLens.proteccion_uv} event={(value) => setNewLens({ ...newLens, proteccion_uv: value })}/>
-        <ToggleButton  text="fotocromatica" value={newLens.fotocromatica} event={(value) => setNewLens({ ...newLens, fotocromatica: value })}/>
+        <ToggleButton
+          text="polarizacion"
+          value={newLens.polarizacion}
+          event={(value) => setNewLens({ ...newLens, polarizacion: value })}
+        />
+        <ToggleButton
+          text="proteccion UV"
+          value={newLens.proteccion_uv}
+          event={(value) => setNewLens({ ...newLens, proteccion_uv: value })}
+        />
+        <ToggleButton
+          text="fotocromatica"
+          value={newLens.fotocromatica}
+          event={(value) => setNewLens({ ...newLens, fotocromatica: value })}
+        />
       </ContenInputs>
 
-      <SubmitButton type="submit">Registrar</SubmitButton>
+      <SubmitButton type="submit">
+        {lensToEdit ? "Actualizar" : "Registrar"}
+      </SubmitButton>
     </Form>
   );
 }

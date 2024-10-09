@@ -1,9 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
-export function ComboBox({ options, onChange }) {
+export function ComboBox({ options, onChange, preValue }) {
   const [selectedOption, setSelectedOption] = useState("");
+
   const [isOpen, setIsOpen] = useState(false);
+
+  // Este efecto es para inicializar el valor seleccionado si hay un preValue
+  useEffect(() => {
+    if (preValue) {
+      const option = options.find(option => option.id_tipoLuna === preValue);
+      if (option) {
+        setSelectedOption(option.nombre);
+      }
+    }
+  }, [preValue, options]); // Se ejecuta si cambian las opciones o el preValue
 
   const handleSelectChange = (option) => {
     setSelectedOption(option.nombre);
@@ -14,7 +25,7 @@ export function ComboBox({ options, onChange }) {
   return (
     <SelectContainer>
       <StyledSelect onClick={() => setIsOpen(!isOpen)}>
-        {selectedOption || "Select an option"}
+        {selectedOption || "Select an option"} {/* Mostrar el valor previo o una opción predeterminada */}
       </StyledSelect>
       {isOpen && (
         <OptionsContainer>
@@ -60,7 +71,7 @@ const OptionsContainer = styled.div`
   border: 1px solid rgba(105, 105, 105, 0.397);
   border-radius: 5px;
   background-color: #1a1a1a;
-  z-index: 100; /* Asegúrate de que se muestre por encima de otros elementos */
+  z-index: 100;
   &::-webkit-scrollbar {
     width: 2px;
   }

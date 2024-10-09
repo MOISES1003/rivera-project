@@ -76,7 +76,8 @@ class LensRepository extends ILensRepository {
 
   //editar el lente
   async update(lens) {
-    const response = await PUT(`/lens/${lens.id}`, lens);
+    const response = await PUT(`/lentes/updateLente/${lens.id_lentes}`, lens);
+    console.log(response.data)
     return response.data;
   }
 }
