@@ -6,7 +6,6 @@ export function useCreateLens() {
   const dispatch = useDispatch();
   const createLoading = useSelector((state) => state.lens.createLoading);
   const createError = useSelector((state) => state.lens.createError);
-
   const addLens = async (lens) => {
     await dispatch(createLens(lens));
   };

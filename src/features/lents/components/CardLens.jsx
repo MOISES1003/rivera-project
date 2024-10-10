@@ -39,7 +39,7 @@ export function CardLens({ item, active, onClick }) {
           <Circle id="bottom" />
         </ImgContainer>
         <FrontContent>
-          <Badge>Pasta</Badge>
+          <Badge>{item.precio} S/.</Badge>
           <Description>
             <Title>
               <p className="title">

@@ -7,6 +7,7 @@ const initialState = {
   pageStatic: "",
   loading: false,
   error: null,
+  messaSuccess: null, // mostrar los mensajes exitosos 
   active: false,  // Cambié 'ative' a 'active' correctamente
 };
 
@@ -17,6 +18,7 @@ const lensSlice = createSlice({
     LensesStart: (state) => {
       state.loading = true;
       state.error = null;
+      state.messaSuccess = null;
     },
     fetchLensesSuccess: (state, action) => {
       state.loading = false;
@@ -39,13 +41,14 @@ const lensSlice = createSlice({
     // Crear lentes
     createLensSuccess: (state, action) => {
       state.loading = false;
-      state.lenses.push(action.payload);
+      state.lenses.push(action.payload.data);
+      state.messaSuccess = action.payload.message;
     },
     // Editar lentes
     updatedLensSuccess: (state, action) => {
-      console.log('payload recibido:', action.payload);  // Log para verificar el payload
       state.loading = false;
-      const updatedLens = action.payload;
+      const updatedLens = action.payload.data; 
+      state.messaSuccess = action.payload.message;
       if (updatedLens && updatedLens.id_lentes) {
         const index = state.lenses.findIndex((lens) => lens && lens.id_lentes === updatedLens.id_lentes);
         if (index !== -1) {

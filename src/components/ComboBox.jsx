@@ -59,6 +59,7 @@ const StyledSelect = styled.div`
   background-color: #333333;
   color: white;
   cursor: pointer;
+  text-align: center;
 `;
 
 const OptionsContainer = styled.div`

@@ -18,7 +18,7 @@ class LensRepository extends ILensRepository {
   async create(lens) {
     const response = await POST("/lentes/CreateLente", lens);
     console.log(response.data)
-    return response.data;
+    return response;
   }
   //
   async getAll(paginaEstatica) {
@@ -78,7 +78,7 @@ class LensRepository extends ILensRepository {
   async update(lens) {
     const response = await PUT(`/lentes/updateLente/${lens.id_lentes}`, lens);
     console.log(response.data)
-    return response.data;
+    return response;
   }
 }
 

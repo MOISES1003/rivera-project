@@ -30,7 +30,10 @@ export async function GET(url, pageEstatic) {
 export async function SEARCH(url, termino) {
     try {
         const response = await apiClient.get(`${url}?q=${termino}`);
-        return response.data.data;
+        return {
+            data: response.data.data,
+            message: response.data.message
+        };
     } catch (error) {
         console.error("Error en SEARCH:", error);
         throw error;
@@ -54,7 +57,10 @@ export async function PUT(url, data) {
     try {
         const response = await apiClient.put(url, data);
         console.log(response);
-        return response.data;
+        return {
+            data: response.data.data,
+            message: response.data.message
+        };
     } catch (error) {
         console.error("Error en PUT:", error);
         throw error;

@@ -9,10 +9,12 @@ import { useNavigateLenses } from "../features/lents/hooks/useNavigateLens";
 import { LoadingComponent } from "../components/LoadingComponent";
 import { Toast } from "primereact/toast";
 import { activeFormLens } from "../features/lents/hooks/activeFormLens";
+import { getMessage } from "../features/lents/hooks/getMessage";
 
 export function LentsPage() {
   const { handleOpenForm, handleCloseForm, isFormOpen, editLent } =
     activeFormLens();
+  const { messaSuccess } = getMessage();
   const toast = useRef(null);
   const { links, loading, error } = useFetchLenses();
   const { NavigateLenses } = useNavigateLenses();
@@ -26,7 +28,17 @@ export function LentsPage() {
         className: "message",
       });
     }
-  }, [error]); // Se ejecuta cada vez que 'error' cambia
+    if (messaSuccess != null) {
+      toast.current.show({
+        severity: "success",
+        summary: "Success",
+        detail: messaSuccess,
+        life: 3000,
+        className: "message",
+      });
+    }
+  }, [error, messaSuccess]); // Se ejecuta cada vez que 'error' o 'messaSuccess' cambia
+
   return (
     <ContentList>
       {loading && <LoadingComponent dynamicMessage="Lunas..." />}
@@ -40,9 +52,13 @@ export function LentsPage() {
       <LensList />
       <Paginate links={links} NavigationEvent={NavigateLenses} />
       <Toast ref={toast} position="bottom-right" />
-      <button onClick={()=>{
-        console.log(editLent)
-      }}>ver editar</button>
+      <button
+        onClick={() => {
+          console.log(messaSuccess);
+        }}
+      >
+        ver
+      </button>
     </ContentList>
   );
 }
@@ -58,6 +74,9 @@ const ContentList = styled.div`
   padding: 5px;
   .message {
     padding: 10px;
+    margin: 10px 0px;
+    color: black;
+    font-weight: 700;
   }
   /* height: 95%; */
   /* overflow: hidden; */
