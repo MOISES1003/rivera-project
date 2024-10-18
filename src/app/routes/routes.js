@@ -2,6 +2,7 @@ import { HomePage } from "../../pages/HomePage";
 import { LentsPage } from "../../pages/LentsPages";
 import { LoginPage } from "../../pages/LoginPage";
 import { MontPage } from "../../pages/MontPage";
+import { SaleGlasses } from "../../pages/SaleGlassesPage";
 
 const ROUTES = {
     HOME: {
@@ -19,6 +20,10 @@ const ROUTES = {
     MONTURA: {
         PATH: "/mont",
         COMPONENT: MontPage
+    },
+    SALEGLASES: {
+        PATH: "/saleGlasses",
+        COMPONENT: SaleGlasses
     },
     // Agrega más rutas según sea necesario
 };

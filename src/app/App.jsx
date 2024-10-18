@@ -10,7 +10,8 @@ import {
 import { ThemeProvider } from "styled-components";
 import { Dark, Light } from "../assets/styles/Themes";
 import { useEffect, useState } from "react";
-import { PrimeReactProvider } from "primereact/api";
+
+import { PrimeReactProvider, PrimeReactContext } from "primereact/api";
 
 function App() {
   const [theme, setTheme] = useState(GetCookie("theme"));

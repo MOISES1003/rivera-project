@@ -44,6 +44,24 @@ class LensRepository extends ILensRepository {
       throw error;
     }
   }
+  async getStockAll() {
+    try {
+      const response = await GET("/lentes/ShowAllLenteStock");
+      const lensesData = response.data;
+      // Asegúrate de que lensesData tenga el formato esperado
+      if (Array.isArray(lensesData)) {
+        const data = lensesData.map((data) =>
+          serialize(new LentsEntitie(data))
+        );
+        return { data };
+      } else {
+        throw new Error("Datos recibidos en un formato inesperado.");
+      }
+    } catch (error) {
+      console.error("Error fetching stock lenses:", error);
+      throw error;
+    }
+  }
   async getNavigateLens(link) {
     try {
       const response = await NAVEGATION(link);

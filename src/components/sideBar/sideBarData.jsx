@@ -2,10 +2,11 @@ import ROUTES from "../../app/routes/routes";
 import { IoMdGlasses } from "react-icons/io";
 import { FaGlasses } from "react-icons/fa";
 import { GiMedicinePills } from "react-icons/gi";
+import { GiSellCard } from "react-icons/gi";
 
 
 
-const { LENTES, LOGIN, MONTURA } = ROUTES;
+const { LENTES, MONTURA,SALEGLASES } = ROUTES;
 const DataItems = [
   {
     name: "Balance",
@@ -13,7 +14,7 @@ const DataItems = [
     path: "/balance",
     subItems: [
       { name: "Listado de Productos", path: "/productos", icon: IoMdGlasses },
-      { name: "Lotes", path: "/lotes", icon: IoMdGlasses },
+      { name: "Venta de Lentes", path: SALEGLASES.PATH, icon: GiSellCard },
       { name: "Categorias", path: "/categorias", icon: IoMdGlasses },
     ],
   },

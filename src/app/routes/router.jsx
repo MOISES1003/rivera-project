@@ -9,7 +9,7 @@ import styled from "styled-components";
 
 export function MyRouters() {
   const [token, setToken] = useState(GetCookie("token"));
-  const { HOME, LENTES, LOGIN , MONTURA } = ROUTES;
+  const { HOME, LENTES, LOGIN , MONTURA,SALEGLASES } = ROUTES;
 
   useEffect(() => {
     // Función para verificar el token
@@ -37,6 +37,7 @@ export function MyRouters() {
             <Route path={HOME.PATH} element={<HOME.COMPONENT />} />
             <Route path={LENTES.PATH} element={<LENTES.COMPONENT />} />
             <Route path={MONTURA.PATH} element={<MONTURA.COMPONENT />} />
+            <Route path={SALEGLASES.PATH} element={<SALEGLASES.COMPONENT />} />
             <Route path="*" element={<NotFoundPage />} />
             {/* Redirige a LOGIN si se intenta acceder a una ruta no definida */}
           </Routes>

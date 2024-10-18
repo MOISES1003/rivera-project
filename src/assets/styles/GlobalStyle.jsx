@@ -1,8 +1,8 @@
 import { createGlobalStyle } from "styled-components";
 // import "@fontsource/poppins";
-// import 'primereact/resources/themes/saga-blue/theme.css';
-// import 'primereact/resources/primereact.min.css';
-// import 'primeicons/primeicons.css';
+import 'primereact/resources/themes/saga-blue/theme.css';
+import 'primereact/resources/primereact.min.css';
+import 'primeicons/primeicons.css';
 
 export const GlobalStyles = createGlobalStyle`
     *{

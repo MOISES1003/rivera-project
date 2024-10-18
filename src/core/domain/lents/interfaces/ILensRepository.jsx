@@ -5,6 +5,9 @@ class ILensRepository {
   getAll(paginaEstatica) {
     throw new Error("Metodo no Implementado");
   }
+  getStockAll() {
+    throw new Error("Metodo no Implementado");
+  }
   getByLens(id) {
     throw new Error("Metodo no Implementado");
   }
