@@ -53,8 +53,8 @@ const IconCart = styled.svg`
 
 export function CartButton  ({ quantity = 0 , event }) {
   return (
-    <ButtonCart data-quantity={quantity}>
-      <IconCart className="icon-cart" viewBox="0 0 24.38 30.52" xmlns="http://www.w3.org/2000/svg" onClick={event} >
+    <ButtonCart data-quantity={quantity} onClick={event}>
+      <IconCart className="icon-cart" viewBox="0 0 24.38 30.52" xmlns="http://www.w3.org/2000/svg" >
         <title>icon-cart</title>
         <path
           transform="translate(-3.62 -0.85)"

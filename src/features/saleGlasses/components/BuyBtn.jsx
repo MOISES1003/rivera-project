@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
-export function BuyBtn() {
+export function BuyBtn({onClick}) {
   return (
-    <Button>
+    <Button onClick={onClick}>
       <Box>
         Comprar
         <Star1>

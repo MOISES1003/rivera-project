@@ -52,13 +52,6 @@ export function LentsPage() {
       <LensList />
       <Paginate links={links} NavigationEvent={NavigateLenses} />
       <Toast ref={toast} position="bottom-right" />
-      <button
-        onClick={() => {
-          console.log(messaSuccess);
-        }}
-      >
-        ver
-      </button>
     </ContentList>
   );
 }

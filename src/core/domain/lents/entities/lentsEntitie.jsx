@@ -35,12 +35,15 @@ class LentsEntitie {
     this.descripcion = descripcion;
     this.precio = precio;
     this.id_proveedor = id_proveedor;
-    this.inStock = this.isInstock(); // Añadimos esta propiedad
+    this.inStock = this.isListInstock(); // Añadimos esta propiedad
     this.tipoluna = tipoluna; 
   }
 
   isInstock() {
     return this.stock > 0;
+  }
+  isListInstock() {
+    return this.stock > 5;
   }
 }
 export default LentsEntitie;

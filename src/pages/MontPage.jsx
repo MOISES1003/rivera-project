@@ -1,36 +1,62 @@
-import { useEffect } from "react";
-import { useFetchLenses } from "../features/lents/hooks/useFetchLenses";
-import { TatableData } from "../features/login/components/TableData";
+import { useEffect, useRef } from "react";
+import { TatableData } from "../components/TableData";
 import styled from "styled-components";
-
+import { Toast } from "primereact/toast";
+import { useFetchMounts } from "../features/mounts/hooks/useFetchMounts";
+import { Paginate } from "../components/Paginate";
+import { LoadingComponent } from "../components/LoadingComponent";
+import { FormMounts } from "../features/mounts/components/Form/FormMounts";
+import { parseEditMounts } from "../features/mounts/hooks/parseEditMounts";
 export function MontPage() {
-  const { lenses, loading, error, loadLenses } = useFetchLenses();
+  const toast = useRef(null);
+  const { mounts, links, loading, error, loadMounts } = useFetchMounts();
+  const { handleParseSelect } = parseEditMounts();
   const config = {
+    id_montura: "id_montura",
+    id_empresa: "id_empresa",
+    serie: "serie",
+    codigo: "codigo",
     stock: "stock",
-    caracteristicas: "caracteristicas_Principal",
-    poderDioptria: "poder_dioptria",
-    nivelAntirreflejo: "nivel_antirreflejo",
-    polarizacion: "polarizacion",
-    proteccionUv: "proteccion_uv",
-    indiceRefraccion: "indice_refraccion",
-    fotocromatica: "fotocromatica",
-    color: "color_luna",
-    material: "material",
-    descripcion: "descripcion",
-    precio: "precio",
   };
   useEffect(() => {
-    loadLenses();
+    loadMounts();
   }, []);
+
+  useEffect(() => {
+    if (error != null) {
+      toast.current.show({
+        severity: "error",
+        summary: "Error",
+        detail: error,
+        life: 3000, // El mensaje desaparecerá después de 3 segundos
+        className: "message",
+      });
+    }
+  }, [error]);
   return (
     <Page>
-      <TatableData items={lenses} config={config} />;
+      {loading && <LoadingComponent dynamicMessage="Monturas..." />}
+      <TatableData
+        items={mounts}
+        config={config}
+        options={true}
+        event={handleParseSelect}
+      />
+      <FormMounts />
+      <Toast ref={toast} position="bottom-right" />
+      <Paginate links={links} />
     </Page>
   );
 }
 const Page = styled.div`
-  height: 100vh;
-  width: 100%;
+
   position: relative;
-  overflow: hidden;
+  flex-grow: 1;
+  display: flex;
+
+  justify-content: center;
+  width: 100%;
+  transition: all 0.5s ease;
+  padding: 5px;
+  gap: 20px;
 `;

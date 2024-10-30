@@ -29,7 +29,7 @@ export function CardLens({ item, active, onClick }) {
       <Back>
         <BackContent>
           <h4>{item.tipoluna.nombre}</h4>
-          <EditButtonComponent color={item.color_luna} event={()=>handleOpenFormFunction(item)}/>
+          <EditButtonComponent inStock={item.inStock} event={()=>handleOpenFormFunction(item)}/>
         </BackContent>
       </Back>
       <Front>

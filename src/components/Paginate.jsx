@@ -44,6 +44,8 @@ export function Paginate({ links, NavigationEvent }) {
 
 const ContentPaginate = styled.div`
   display: flex;
+  position: absolute;
+bottom: 20px;
   gap: 20px;
   button {
     cursor: pointer;

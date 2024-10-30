@@ -1,7 +1,6 @@
 import { MdEdit, MdDelete } from "react-icons/md";
-import { FaEye } from "react-icons/fa";
 import styled from "styled-components";
-import Checkbox from "./Checkbox";
+import Checkbox from "../features/login/components/Checkbox";
 import { useRef, useState } from "react";
 
 export function TatableData({
@@ -9,8 +8,6 @@ export function TatableData({
   options = false,
   items,
   config = {},
-  eventParse,
-  parseEdit,
   parseDelete,
   setModal,
 }) {
@@ -49,6 +46,7 @@ export function TatableData({
                   onClick={() => {
                     setChecked(null);
                     setChecked(key);
+                    event(item)
                   }}
                 >
                   <Td key={key}>
@@ -59,7 +57,6 @@ export function TatableData({
                         setChecked(key);
                       }}
                     />
-                    {/* Pasar la referencia */}
                   </Td>
                   {columnLabels.map((label, colIndex) => (
                     <Td key={colIndex}>
@@ -68,20 +65,6 @@ export function TatableData({
                   ))}
                   {options == true ? (
                     <Td className="action">
-                      <Eye
-                        onClick={() => {
-                          eventParse(item);
-                          setModal("ver");
-                          console.log(IDSucursal);
-                        }}
-                      />
-                      <Edit
-                        onClick={() => {
-                          event("editar", true);
-                          parseEdit(item);
-                        }}
-                        id={IDSucursal}
-                      />
                       <Delete
                         onClick={() => {
                           parseDelete(item);
@@ -107,6 +90,9 @@ const ContenTable = styled.article`
   max-height: 80%;
   overflow-y: auto;
   left: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   /* background-color: red; */
 
   @media (max-width: 650px) {
@@ -152,26 +138,12 @@ const Td = styled.td`
     padding: 5px;
   }
 `;
-const Edit = styled(MdEdit)`
-  cursor: pointer;
-  margin: 0px 5px 0px 5px;
-  display: ${(props) => (props.id == 1 ? "auto" : "none")};
-  @media (max-width: 650px) {
-    font-size: 12px;
-  }
-`;
-const Eye = styled(FaEye)`
-  cursor: pointer;
-  margin: 0px 5px 0px 5px;
-  @media (max-width: 650px) {
-    font-size: 12px;
-  }
-`;
-
 const Delete = styled(MdDelete)`
   cursor: pointer;
   margin: 0px 5px 0px 5px;
   display: ${(props) => (props.id == 1 ? "auto" : "none")};
+  color: red;
+  font-size: 20px;
   @media (max-width: 650px) {
     font-size: 12px;
   }

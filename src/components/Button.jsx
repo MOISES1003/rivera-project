@@ -16,6 +16,7 @@ export function Button({ event, width, height, text, colorRgb, colorTextRgb }) {
 
 const Btn = styled.button`
   border: none;
+  display: flex;
   width: ${(props) => (props.width ? props.width : "auto")};
   height: ${(props) => (props.height ? props.height : "auto")};
   background-color: ${(props) =>
@@ -23,6 +24,9 @@ const Btn = styled.button`
   color: ${(props) =>
     props.colorTextRgb ? `rgb(${props.colorTextRgb})` : `rgb(0, 0, 0)`};
   text-align: center;
+  justify-content: center;
+  align-items:center;
   border-radius: 20px;
   cursor: pointer;
+  padding: 5px;
 `;

@@ -5,9 +5,12 @@ import SearchInput from "../../../components/SearchInput";
 import img from "../../../assets/images/lunas.png"; // Asegúrate de que esta ruta sea correcta
 import { colorizeLens } from "../../../core/utils/colorUtils";
 import { CartButton } from "../../../components/CartButton";
+import { useFetchSaleGlases } from "../../saleGlasses/hooks/useFechSaleGlases";
 
 export function BuysCardLens() {
   const { stockLenses, loading, error, loadLenses } = useFechStockLens();
+
+
   useEffect(() => {
     loadLenses();
   }, []);
@@ -56,6 +59,7 @@ const ContentItems = styled.div`
 `;
 
 function Item({ item }) {
+  const {addLunasSaleGlasses} = useFetchSaleGlases()
   const canvasRef = useRef(null);
   useEffect(() => {
     const canv = canvasRef.current;
@@ -71,7 +75,7 @@ function Item({ item }) {
       </canvas>
       <ContentData>{item.tipoluna.nombre}</ContentData>
       <ContButton>
-        <CartButton quantity={item.stock} />
+        <CartButton quantity={item.stock} event={()=>addLunasSaleGlasses(item)} />
         <span>{item.precio} S/.</span>
       </ContButton>
     </ItemCont>
