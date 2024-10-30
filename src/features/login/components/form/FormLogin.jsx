@@ -27,6 +27,7 @@ export function FormLogin({ event }) {
         <ContentInputs>
           <InputText
             placeholder="Ruc:"
+            title="Ruc:"
             height="35px"
             width="300px"
             value={logUser.ruc}
@@ -34,6 +35,7 @@ export function FormLogin({ event }) {
           />
           <InputText
             placeholder="Usuario:"
+            title="Usuario"
             height="35px"
             width="300px"
             value={logUser.usuario}
@@ -41,6 +43,7 @@ export function FormLogin({ event }) {
           />
           <InputText
             placeholder="Password:"
+            title="Password"
             type="password"
             height="35px"
             width="300px"
