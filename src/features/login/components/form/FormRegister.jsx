@@ -30,14 +30,14 @@ export function FormRegister({ event }) {
             height="35px"
             width="300px"
             value={newUser.ruc}
-            event={(e) => setNewUser({ ...newUser, ruc: e.target.value })}
+            handleChange={(e) => setNewUser({ ...newUser, ruc: e.target.value })}
           />
           <InputText
             placeholder="Usuario:"
             height="35px"
             width="300px"
             value={newUser.usuario}
-            event={(e) => setNewUser({ ...newUser, usuario: e.target.value })}
+            handleChange={(e) => setNewUser({ ...newUser, usuario: e.target.value })}
           />
           <InputText
             placeholder="Password:"
@@ -45,7 +45,7 @@ export function FormRegister({ event }) {
             height="35px"
             width="300px"
             value={newUser.password}
-            event={(e) => setNewUser({ ...newUser, password: e.target.value })}
+            handleChange={(e) => setNewUser({ ...newUser, password: e.target.value })}
           />
           <div className="contenRecoverPassword">
             <button href="" className="recoverPassword" onClick={event}>

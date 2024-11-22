@@ -26,12 +26,12 @@ export function FormLogin({ event }) {
         <h2>login</h2>
         <ContentInputs>
           <InputText
-            placeholder="Ruc:"
+            placeholder="Ruc:"    
             title="Ruc:"
             height="35px"
             width="300px"
             value={logUser.ruc}
-            event={(e) => setLogUser({ ...logUser, ruc: e.target.value })}
+            handleChange={(e) => setLogUser({ ...logUser, ruc: e.target.value })}
           />
           <InputText
             placeholder="Usuario:"
@@ -39,7 +39,7 @@ export function FormLogin({ event }) {
             height="35px"
             width="300px"
             value={logUser.usuario}
-            event={(e) => setLogUser({ ...logUser, usuario: e.target.value })}
+            handleChange={(e) => setLogUser({ ...logUser, usuario: e.target.value })}
           />
           <InputText
             placeholder="Password:"
@@ -48,7 +48,7 @@ export function FormLogin({ event }) {
             height="35px"
             width="300px"
             value={logUser.password}
-            event={(e) => setLogUser({ ...logUser, password: e.target.value })}
+            handleChange={(e) => setLogUser({ ...logUser, password: e.target.value })}
           />
           <div className="contenRecoverPassword">
             <a href="" className="recoverPassword">
